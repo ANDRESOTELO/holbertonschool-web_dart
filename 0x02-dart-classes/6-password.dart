@@ -1,26 +1,23 @@
+// Copied from 4-mutables.dart
+
 class Password {
-  String? _password = "";
+  String _password = "";
 
-  String get password => _password!;
+  Password({required String password}) : _password = password;
 
-  set password(String password) => _password = password;
-  Password({password}) : _password = password;
+  String get password => _password;
 
-  bool isValid() {
-    if ((this._password?.length ?? 0) > 6 &&
-        (this._password?.length ?? 0) < 18) {
-      if (this._password!.contains(RegExp(r"(?=.*[a-z])(?=.*[A-Z])\w+"))) {
-        if (this._password!.contains(RegExp(r'\d'))) {
+  set password(String pw) {
+    _password = pw;
+  }
 
-          return true;
-        }
-      }
-    }
-    return false;
+  bool isValid(userJson) {
+    return (this.password.length >= 8 && this.password.length <= 16) &&
+      this.password.contains(RegExp(r'[a-z]')) &&
+      this.password.contains(RegExp(r'[A-Z]')) &&
+      this.password.contains(RegExp(r'[0-9]'));
   }
 
   @override
-  String toString() {
-    return "Your Password is: ${this._password}";
-  }
+  String toString() => "Your Password is: ${this.password}";
 }
