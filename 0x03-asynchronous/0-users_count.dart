@@ -1,8 +1,8 @@
-// Prints number result of fetchUsersCount
-import '0-main.dart';
+Future<int> fetchUsersCount() => Future.delayed(
+      const Duration(seconds: 2),
+      () => 19,
+    );
 
-Future<void> usersCount() {
-  return fetchUsersCount().then((count) {
-    print(count);
-  });
+usersCount() async {
+  print(await fetchUsersCount());
 }
